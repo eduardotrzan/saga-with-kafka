@@ -18,6 +18,7 @@
         <module>order-payment-generic-server-filter</module>
         <module>order-payment-generic-tracking</module>
         <module>order-payment-generic-security</module>
+        <module>order-payment-generic-kafka</module>
     </modules>
 
     <dependencyManagement>
