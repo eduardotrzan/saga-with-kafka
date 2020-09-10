@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver: org.postgresql.Driver
+    driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
+    url: jdbc:tc:postgresql:12.1-alpine://localhost/ordering
+    username: ordering
+    password: ordering
+    name: "Local Data Source"
+  liquibase:
+    change-log: classpath:orderpayment/ordering/liquibase/db.changelog-master-test.xml
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate.temp.use_jdbc_metadata_defaults: false
+      hibernate.format_sql: true
+
+logging:
+  level:
+    root: INFO
+    # Hides HHH000424: Disabling contextual LOB creation as createClob() method threw error
+    org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl: WARN
+    org.hibernate.type.descriptor.sql: TRACE
+    org.hibernate.SQL: DEBUG

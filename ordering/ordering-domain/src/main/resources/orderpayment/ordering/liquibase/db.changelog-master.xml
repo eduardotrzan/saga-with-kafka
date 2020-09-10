@@ -7,11 +7,11 @@
                             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"
 >
     <changeSet author="eduardotrzan"
-               id="OPY-GEN-001-Pre.config.db"
-               logicalFilePath="order/payment/generic/domain/liquibase/changelog/OPY-GEN-001-Pre.config.db.changelog.sql">
+               id="OPY-ORD-001-Create.ordering.order.domain"
+               logicalFilePath="orderpayment/ordering/liquibase/changelog/OPY-ORD-001-Create.ordering.order.domain.changelog.sql">
         <sqlFile
                 encoding="utf8"
-                path="order/payment/generic/domain/liquibase/changelog/POY-GEN-001-Pre.config.db.changelog.sql"
+                path="orderpayment/ordering/liquibase/changelog/OPY-ORD-001-Create.ordering.order.domain.changelog.sql"
                 splitStatements="true"
                 stripComments="true"
         />
