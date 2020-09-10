@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>ordering-domain</module>
+        <module>ordering-service</module>
+        <module>ordering-dto</module>
     </modules>
 
     <properties>
@@ -83,6 +85,11 @@
         <!-- System -->
         <order-payment-generic-log.version>1.0.0-SNAPSHOT</order-payment-generic-log.version>
         <order-payment-generic-domain.version>1.0.0-SNAPSHOT</order-payment-generic-domain.version>
+        <order-payment-generic-exception.version>1.0.0-SNAPSHOT</order-payment-generic-exception.version>
+
+        <!-- Ordering -->
+        <ordering-domain.version>1.0.0-SNAPSHOT</ordering-domain.version>
+        <ordering-dto.version>1.0.0-SNAPSHOT</ordering-dto.version>
     </properties>
 
     <dependencies>
@@ -115,11 +122,23 @@
                 <version>${order-payment-generic-domain.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.paysmart</groupId>
+                <artifactId>order-payment-generic-exception</artifactId>
+                <version>${order-payment-generic-exception.version}</version>
+            </dependency>
+
             <!-- Current System -->
             <dependency>
                 <groupId>com.paysmart</groupId>
                 <artifactId>ordering-domain</artifactId>
                 <version>${ordering-domain.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.paysmart</groupId>
+                <artifactId>ordering-dto</artifactId>
+                <version>${ordering-dto.version}</version>
             </dependency>
 
             <!-- Spring Boot -->

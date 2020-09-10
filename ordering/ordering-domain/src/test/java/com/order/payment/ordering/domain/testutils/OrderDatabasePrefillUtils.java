@@ -18,6 +18,7 @@ import com.devskiller.jfairy.Fairy;
 import com.devskiller.jfairy.producer.company.Company;
 import com.devskiller.jfairy.producer.person.Person;
 import com.order.payment.ordering.domain.entity.Order;
+import com.order.payment.ordering.domain.entity.enums.OrderStatus;
 import com.order.payment.ordering.domain.repo.OrderRepository;
 
 @Slf4j
@@ -75,6 +76,7 @@ public class OrderDatabasePrefillUtils {
     public OrderDatabasePrefillUtils withRandomOrder() {
         Company company = Fairy.create().company();
         this.order = Order.builder()
+                .status(OrderStatus.PENDING)
                 .description(company.getName())
                 .cost(randomDecimalBetween(1000, 10000))
                 .build();

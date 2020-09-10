@@ -19,6 +19,7 @@
         <module>order-payment-generic-tracking</module>
         <module>order-payment-generic-security</module>
         <module>order-payment-generic-kafka</module>
+        <module>order-payment-generic-exception</module>
     </modules>
 
     <dependencyManagement>

@@ -17,6 +17,7 @@ CREATE TABLE "ordering" (
     "create_date"                TIMESTAMP WITH TIME ZONE                                    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "update_date"                TIMESTAMP WITH TIME ZONE                                    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "version"                    BIGINT                                                      NOT NULL,
+    "status"                     VARCHAR(70)                                                 NOT NULL DEFAULT 'PENDING', -- 'IN_PROGRESS', 'DONE'
     "description"                VARCHAR(200)                                                NOT NULL,
     "cost"                       DECIMAL(24, 12)                                             NOT NULL,
 

@@ -9,6 +9,8 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +19,7 @@ import javax.persistence.Table;
 import java.math.BigDecimal;
 
 import com.order.payment.generic.domain.entity.AbstractEntity;
+import com.order.payment.ordering.domain.entity.enums.OrderStatus;
 
 @Getter
 @Setter
@@ -33,6 +36,10 @@ public class Order extends AbstractEntity<Long> {
     @SequenceGenerator(name = "ordering_id_seq", sequenceName = "ordering_id_seq", allocationSize = 1)
     @Column(name = "id", updatable = false)
     private Long id;
+
+    @Column(name = "status", nullable = false, length = 70, updatable = false)
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 
     @Column(name = "description", nullable = false, length = 200)
     private String description;
