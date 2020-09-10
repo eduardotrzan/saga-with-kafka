@@ -14,11 +14,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.order.payment.ordering.domain.entity.Order;
 import com.order.payment.ordering.dto.enums.OrderStatusDto;
+import com.order.payment.ordering.dto.request.OrderCreateDto;
 import com.order.payment.ordering.dto.response.OrderDto;
 
 @RequiredArgsConstructor
 @Component
 public class OrderMapper {
+
+    public Order toNewEntity(OrderCreateDto request) {
+        Objects.requireNonNull(request);
+
+        return Order.builder()
+                .description(request.getDescription())
+                .cost(request.getCost())
+                .build();
+    }
 
     @Transactional(propagation = Propagation.MANDATORY)
     public Optional<OrderDto> toDto(Order entity) {

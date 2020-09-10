@@ -15,6 +15,8 @@
         <module>ordering-domain</module>
         <module>ordering-service</module>
         <module>ordering-dto</module>
+        <module>ordering-controller</module>
+        <module>ordering-server</module>
     </modules>
 
     <properties>
@@ -53,6 +55,9 @@
         <zipkin-brave.version>5.12.5</zipkin-brave.version>
         <zipkin-sender-okhttp3.version>2.15.1</zipkin-sender-okhttp3.version>
 
+        <!-- Documentation -->
+        <springfox-swagger.version>3.0.0</springfox-swagger.version>
+
         <!-- Libs -->
         <apache-commons-collections4.version>4.4</apache-commons-collections4.version>
         <apache-common-lang.version>3.11</apache-common-lang.version>
@@ -86,10 +91,15 @@
         <order-payment-generic-log.version>1.0.0-SNAPSHOT</order-payment-generic-log.version>
         <order-payment-generic-domain.version>1.0.0-SNAPSHOT</order-payment-generic-domain.version>
         <order-payment-generic-exception.version>1.0.0-SNAPSHOT</order-payment-generic-exception.version>
+        <order-payment-generic-controller.version>1.0.0-SNAPSHOT</order-payment-generic-controller.version>
+        <order-payment-generic-security.version>1.0.0-SNAPSHOT</order-payment-generic-security.version>
+        <order-payment-generic-tracking.version>1.0.0-SNAPSHOT</order-payment-generic-tracking.version>
 
         <!-- Ordering -->
         <ordering-domain.version>1.0.0-SNAPSHOT</ordering-domain.version>
         <ordering-dto.version>1.0.0-SNAPSHOT</ordering-dto.version>
+        <ordering-service.version>1.0.0-SNAPSHOT</ordering-service.version>
+        <ordering-controller.version>1.0.0-SNAPSHOT</ordering-controller.version>
     </properties>
 
     <dependencies>
@@ -128,6 +138,24 @@
                 <version>${order-payment-generic-exception.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.paysmart</groupId>
+                <artifactId>order-payment-generic-controller</artifactId>
+                <version>${order-payment-generic-controller.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.paysmart</groupId>
+                <artifactId>order-payment-generic-security</artifactId>
+                <version>${order-payment-generic-security.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.paysmart</groupId>
+                <artifactId>order-payment-generic-tracking</artifactId>
+                <version>${order-payment-generic-tracking.version}</version>
+            </dependency>
+
             <!-- Current System -->
             <dependency>
                 <groupId>com.paysmart</groupId>
@@ -139,6 +167,18 @@
                 <groupId>com.paysmart</groupId>
                 <artifactId>ordering-dto</artifactId>
                 <version>${ordering-dto.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.paysmart</groupId>
+                <artifactId>ordering-service</artifactId>
+                <version>${ordering-service.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.paysmart</groupId>
+                <artifactId>ordering-controller</artifactId>
+                <version>${ordering-controller.version}</version>
             </dependency>
 
             <!-- Spring Boot -->
@@ -299,6 +339,39 @@
                 <groupId>com.sun.xml.bind</groupId>
                 <artifactId>jaxb-impl</artifactId>
                 <version>${jaxb-impl.version}</version>
+            </dependency>
+
+            <!-- Documentation -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox-swagger.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.guava</groupId>
+                        <artifactId>guava</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.javassist</groupId>
+                        <artifactId>javassist</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox-swagger.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.guava</groupId>
+                        <artifactId>guava</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.javassist</groupId>
+                        <artifactId>javassist</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- Libs -->
@@ -647,190 +720,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>add-generated-source</id>
-                            <phase>generate-sources</phase>
-                            <goals>
-                                <goal>add-source</goal>
-                            </goals>
-                            <configuration>
-                                <sources>
-                                    <source>${project.build.directory}/generated-sources</source>
-                                </sources>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>add-generated-test-source</id>
-                            <phase>generate-test-sources</phase>
-                            <goals>
-                                <goal>add-test-source</goal>
-                            </goals>
-                            <configuration>
-                                <sources>
-                                    <source>${project.build.directory}/generated-test-sources</source>
-                                </sources>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                    <compilerVersion>${maven-compiler.version}</compilerVersion>
-                    <fork>true</fork>
-                </configuration>
-            </plugin>
-
-            <!-- Enforces dependencies to be aligned -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${maven-enforcer.version}</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <dependencyConvergence />
-
-                                <banCircularDependencies/>
-                            </rules>
-                            <failFast>true</failFast>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>extra-enforcer-rules</artifactId>
-                        <version>1.2</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-
-            <!-- Unit tests configuration -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Test.java</include>
-                    </includes>
-                    <systemPropertyVariables>
-                        <user.timezone>America/Montreal</user.timezone>
-                        <jadira.usertype.useJdbc42Apis>true</jadira.usertype.useJdbc42Apis>
-                    </systemPropertyVariables>
-                    <skipTests>${skip-unit-test}</skipTests>
-                </configuration>
-            </plugin>
-
-            <!-- Integration tests configuration -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${maven-failsafe-plugin.version}</version>
-                <configuration>
-                    <includes>
-                        <include>**/*IT.java</include>
-                    </includes>
-                    <systemPropertyVariables>
-                        <user.timezone>America/Montreal</user.timezone>
-                    </systemPropertyVariables>
-                </configuration>
-                <executions>
-                    <!-- Ensures that both integration-test and verify goals of the Failsafe
-                        Maven plugin are executed. -->
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <skipTests>${skip-integration-test}</skipTests>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco-maven-plugin.version}</version>
-                <configuration>
-                    <excludes>
-                        <exclude>**/*Config.*</exclude>
-                        <exclude>**/*Properties.*</exclude>
-                        <exclude>**/*Dto.*</exclude>
-                        <exclude>**/entity/**</exclude>
-                    </excludes>
-                </configuration>
-                <executions>
-                    <!-- Prepares the property pointing to the JaCoCo runtime agent which
-                        is passed as VM argument when Maven the Surefire plugin is executed. -->
-                    <execution>
-                        <id>pre-unit-test</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <!-- Ensures that the code coverage report for Unit Tests is created  after unit tests have been run. -->
-                    <execution>
-                        <id>post-unit-test</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                        <configuration>
-                            <!-- default target/jscoco/site/* -->
-                            <!-- Sets the output directory for the code coverage report. -->
-                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-unit-test</outputDirectory>
-                        </configuration>
-                    </execution>
-                    <!-- The Executions required by unit tests are omitted. -->
-                    <!-- Prepares the property pointing to the JaCoCo runtime agent which is passed as VM argument when Maven the Failsafe plugin is executed. -->
-                    <execution>
-                        <id>pre-integration-test</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <!-- Ensures that the code coverage report for Integration Tests after have been run. -->
-                    <execution>
-                        <id>post-integration-test</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                        <configuration>
-                            <!-- default target/jscoco/site/* -->
-                            <!-- Sets the output directory for the code coverage report. -->
-                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-integration-tests</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
     <profiles>
         <profile>

@@ -56,6 +56,9 @@
         <zipkin-brave.version>5.12.5</zipkin-brave.version>
         <zipkin-sender-okhttp3.version>2.15.1</zipkin-sender-okhttp3.version>
 
+        <!-- Documentation -->
+        <springfox-swagger.version>3.0.0</springfox-swagger.version>
+
         <!-- Libs -->
         <apache-commons-collections4.version>4.4</apache-commons-collections4.version>
         <apache-common-lang.version>3.11</apache-common-lang.version>
@@ -266,6 +269,39 @@
                 <groupId>com.sun.xml.bind</groupId>
                 <artifactId>jaxb-impl</artifactId>
                 <version>${jaxb-impl.version}</version>
+            </dependency>
+
+            <!-- Documentation -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox-swagger.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.guava</groupId>
+                        <artifactId>guava</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.javassist</groupId>
+                        <artifactId>javassist</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox-swagger.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.guava</groupId>
+                        <artifactId>guava</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.javassist</groupId>
+                        <artifactId>javassist</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- Libs -->
@@ -799,38 +835,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>local</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <profileName>local</profileName>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>docker</id>
-            <properties>
-                <profileName>docker</profileName>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>test</id>
-            <properties>
-                <profileName>test</profileName>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>prod</id>
-            <properties>
-                <profileName>prod</profileName>
-            </properties>
-        </profile>
-    </profiles>
-
 </project>
