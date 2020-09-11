@@ -45,6 +45,7 @@ server:
       enabled: true
 
 logging:
+  config: classpath:logback.xml
   level:
     mcp:
       cloudtrace: INFO

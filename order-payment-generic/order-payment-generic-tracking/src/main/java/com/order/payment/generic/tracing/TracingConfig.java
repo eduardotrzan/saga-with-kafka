@@ -27,7 +27,7 @@ public class TracingConfig {
     }
 
     @Bean
-    SpanHandler spanReporter(Sender sender) {
+    SpanHandler spanHandler(Sender sender) {
         return AsyncZipkinSpanHandler.create(sender);
     }
 

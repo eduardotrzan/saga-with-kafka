@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false">
+    <include resource="com/order/payment/generic/log/logback-base.xml"/>
+
+    <logger name="com.order.payment">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="com.order.payment">
+        <level value="DEBUG"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="FILE-JSON" />
+    </root>
+</configuration>

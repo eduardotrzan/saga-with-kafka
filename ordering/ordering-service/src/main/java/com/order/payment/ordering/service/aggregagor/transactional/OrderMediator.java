@@ -23,7 +23,7 @@ public class OrderMediator {
 
     private final OrderMapper orderMapper;
 
-    @Transactional(readOnly = true)
+    @Transactional
     public OrderDto create(OrderCreateDto request) {
         Order toBeSaved = this.orderMapper.toNewEntity(request);
         Order saved = this.orderService.create(toBeSaved);

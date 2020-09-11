@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.order.payment.ordering.domain.entity.Order;
+import com.order.payment.ordering.domain.entity.enums.OrderStatus;
 import com.order.payment.ordering.domain.repo.OrderRepository;
 
 @RequiredArgsConstructor
@@ -21,8 +22,9 @@ public class OrderService {
     private final OrderRepository repo;
 
     @Transactional(propagation = Propagation.MANDATORY)
-    public Order create(Order contract) {
-        return this.repo.save(contract);
+    public Order create(Order order) {
+        order.setStatus(OrderStatus.PENDING);
+        return this.repo.save(order);
     }
 
     @Transactional(readOnly = true, propagation = Propagation.MANDATORY)

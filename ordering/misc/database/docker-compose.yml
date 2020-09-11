@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  lehandy-db:
+    container_name: ordering-db-standalone
+    restart: always
+    image: ordering-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5442:5432"

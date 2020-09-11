@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%magenta(%d{yyyy-MM-dd HH:mm:ss.SSS Z, America/Montreal}) [%thread] %highlight([%level]) %cyan(%logger{36}) %yellow(reqSessionId=%X{reqSessionId:--} userSessionId=%X{userSessionId:--}) - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.hibernate.SQL" level="debug" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger name="org.hibernate.type.descriptor.sql" level="trace" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <appender name="CONSOLE-JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <provider class="net.logstash.logback.composite.loggingevent.LoggingEventPatternJsonProvider">
+                <pattern>
+                    {
+                    "reqSessionId": "%X{reqSessionId:--}",
+                    "userSessionId": "%X{userSessionId:--}"
+                    }
+                </pattern>
+            </provider>
+            <timeZone>America/Montreal</timeZone>
+            <includeContext>false</includeContext>
+            <includeCallerData>false</includeCallerData>
+            <!--
+            Excluding these MDC fields as they are going to be added by LoggingEventPatternJsonProvider above
+            with shorter names (no straight way to rename MDC fields otherwise).
+             -->
+            <excludeMdcKeyName>reqSessionId</excludeMdcKeyName>
+            <excludeMdcKeyName>userSessionId</excludeMdcKeyName>
+            <fieldNames class="net.logstash.logback.fieldnames.ShortenedFieldNames">
+                <message>msg</message>
+                <logger>log</logger>
+                <thread>t</thread>
+                <level>level</level>
+                <timestamp>time</timestamp>
+                <levelValue>[ignore]</levelValue>
+                <version>[ignore]</version>
+            </fieldNames>
+            <shortenedLoggerNameLength>20</shortenedLoggerNameLength>
+            <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                <rootCauseFirst>true</rootCauseFirst>
+                <shortenedClassNameLength>260</shortenedClassNameLength>
+                <exclude>sun\.reflect\..*\.invoke.*</exclude>
+                <exclude>com\.sun\..*</exclude>
+
+                <exclude>sun\.net\..*</exclude>
+                <exclude>net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>
+                <exclude>org\.springframework\.cglib\..*</exclude>
+                <exclude>org\.springframework\.transaction\..*</exclude>
+                <exclude>org\.springframework\.validation\..*</exclude>
+                <exclude>org\.springframework\.app\..*</exclude>
+                <exclude>org\.springframework\.aop\..*</exclude>
+                <exclude>java\.lang\.reflect\.Method\.invoke</exclude>
+                <exclude>org\.springframework\.ws\..*\.invoke</exclude>
+                <exclude>org\.springframework\.ws\.transport\..*</exclude>
+                <exclude>org\.springframework\.ws\.soap\.saaj\.SaajSoapMessage\.*</exclude>
+                <exclude>org\.springframework\.ws\.client\.core\.WebServiceTemplate\..*</exclude>
+                <exclude>org\.springframework\.web\.filter\..*</exclude>
+                <exclude>org\.springframework\.boot\.actuate\.autoconfigure\.MetricFilterAutoConfiguration\.*</exclude>
+                <exclude>org\.apache\.tomcat\..*</exclude>
+                <exclude>org\.apache\.catalina\..*</exclude>
+                <exclude>org\.apache\.coyote\..*</exclude>
+                <exclude>java\.util\.concurrent\.ThreadPoolExecutor\.runWorker.*</exclude>
+            </throwableConverter>
+        </encoder>
+    </appender>
+
+    <appender name="FILE-JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/server-json.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>logs/server-json.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <provider class="net.logstash.logback.composite.loggingevent.LoggingEventPatternJsonProvider">
+                <pattern>
+                    {
+                    "reqSessionId": "%X{reqSessionId:--}",
+                    "userSessionId": "%X{userSessionId:--}"
+                    }
+                </pattern>
+            </provider>
+            <timeZone>America/Montreal</timeZone>
+            <includeContext>false</includeContext>
+            <includeCallerData>false</includeCallerData>
+            <!--
+            Excluding these MDC fields as they are going to be added by LoggingEventPatternJsonProvider above
+            with shorter names (no straight way to rename MDC fields otherwise).
+             -->
+            <excludeMdcKeyName>reqSessionId</excludeMdcKeyName>
+            <excludeMdcKeyName>userSessionId</excludeMdcKeyName>
+            <fieldNames class="net.logstash.logback.fieldnames.ShortenedFieldNames">
+                <message>msg</message>
+                <logger>log</logger>
+                <thread>t</thread>
+                <level>level</level>
+                <timestamp>time</timestamp>
+                <levelValue>[ignore]</levelValue>
+                <version>[ignore]</version>
+            </fieldNames>
+            <shortenedLoggerNameLength>20</shortenedLoggerNameLength>
+            <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                <rootCauseFirst>true</rootCauseFirst>
+                <shortenedClassNameLength>260</shortenedClassNameLength>
+                <exclude>sun\.reflect\..*\.invoke.*</exclude>
+                <exclude>com\.sun\..*</exclude>
+                <exclude>sun\.net\..*</exclude>
+                <exclude>net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>
+                <exclude>org\.springframework\.cglib\..*</exclude>
+                <exclude>org\.springframework\.transaction\..*</exclude>
+                <exclude>org\.springframework\.validation\..*</exclude>
+                <exclude>org\.springframework\.app\..*</exclude>
+                <exclude>org\.springframework\.aop\..*</exclude>
+                <exclude>java\.lang\.reflect\.Method\.invoke</exclude>
+                <exclude>org\.springframework\.ws\..*\.invoke</exclude>
+                <exclude>org\.springframework\.ws\.transport\..*</exclude>
+                <exclude>org\.springframework\.ws\.soap\.saaj\.SaajSoapMessage\.*</exclude>
+                <exclude>org\.springframework\.ws\.client\.core\.WebServiceTemplate\..*</exclude>
+                <exclude>org\.springframework\.web\.filter\..*</exclude>
+                <exclude>org\.springframework\.boot\.actuate\.autoconfigure\.MetricFilterAutoConfiguration\.*</exclude>
+                <exclude>org\.apache\.tomcat\..*</exclude>
+                <exclude>org\.apache\.catalina\..*</exclude>
+                <exclude>org\.apache\.coyote\..*</exclude>
+                <exclude>java\.util\.concurrent\.ThreadPoolExecutor\.runWorker.*</exclude>
+            </throwableConverter>
+        </encoder>
+    </appender>
+
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/server.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>logs/server.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%magenta(%d{yyyy-MM-dd HH:mm:ss.SSS Z, America/Montreal}) [%thread] %highlight([%level]) %cyan(%logger{36}) %yellow(reqSessionId=%X{reqSessionId:--} userSessionId=%X{userSessionId:--}) - %msg%n</Pattern>
+        </layout>
+    </appender>
+</included>

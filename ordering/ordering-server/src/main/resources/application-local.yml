@@ -1,9 +1,5 @@
 server:
-  port: 8484
-
-external:
-  api:
-    contractorUrl: http://127.0.0.1:8485/ordering
+  port: 8485
 
 mcp:
   zipkin:
@@ -11,7 +7,7 @@ mcp:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5436/ordering
+    url: jdbc:postgresql://localhost:5442/ordering
     username: ordering
     password: ordering
   jpa:

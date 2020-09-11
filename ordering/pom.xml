@@ -65,7 +65,7 @@
         <google-guava.version>28.2-jre</google-guava.version>
 
         <!-- Database -->
-        <liquibase.version>4.0.0</liquibase.version>
+        <liquibase.version>3.10.2</liquibase.version>
 
         <lombok.version>1.18.12</lombok.version>
         <lombok-maven.version>1.18.12.0</lombok-maven.version>
@@ -281,27 +281,6 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
                 <version>${spring-context.version}</version>
-            </dependency>
-
-            <!-- JWT -->
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt-api</artifactId>
-                <version>${jjwt.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt-impl</artifactId>
-                <version>${jjwt.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt-jackson</artifactId>
-                <version>${jjwt.version}</version>
-                <scope>runtime</scope>
             </dependency>
 
             <!-- Missing XML from jdk11 and on -->
@@ -615,25 +594,6 @@
                 <groupId>net.logstash.logback</groupId>
                 <artifactId>logstash-logback-encoder</artifactId>
                 <version>${logstash.version}</version>
-            </dependency>
-
-            <!-- OWASP - Security -->
-            <dependency>
-                <groupId>org.owasp.encoder</groupId>
-                <artifactId>encoder</artifactId>
-                <version>${owasp-encoder.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.google.guava</groupId>
-                        <artifactId>guava</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
-                <artifactId>owasp-java-html-sanitizer</artifactId>
-                <version>${owasp-google-sanitizer.version}</version>
             </dependency>
 
             <!-- Checkstyle & Find Bugs -->

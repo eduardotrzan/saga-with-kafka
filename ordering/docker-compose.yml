@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+  tracer:
+    image: openzipkin/zipkin
+    container_name: tracer-dc
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9411"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "9411:9411"
+  ordering-db:
+    image: ordering-db
+    container_name: ordering-dc-db
+    healthcheck:
+      test: "exit 0"
+    ports:
+      - "5440:5432"
+  ordering-server:
+    image: ordering-server
+    build: .
+    container_name: ordering-dc-server
+    depends_on:
+      - ordering-db
+      - tracer
+    ports:
+      - "127.0.0.1:8485:8485"
+    volumes:
+      - ~/Dev/Docker/logs/ordering:/opt/ordering/server/logs
+    environment:
+      # Spring running profile
+      - springProfile=docker
+
+      # Application running port
+      - serverPort=8485
+
+      # DB configuration
+      - databaseUrl=jdbc:postgresql://ordering-db:5432/ordering
+      - databaseUsername=ordering
+      - databasePassword=ordering
+
+      # JPA sql logging
+      - jpaShowSql=true
+
+      # Tracing
+      - mcp.zipkin=http://tracer:9411/api/v2/spans
+

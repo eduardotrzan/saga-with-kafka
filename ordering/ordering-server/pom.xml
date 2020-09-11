@@ -12,6 +12,12 @@
     <artifactId>ordering-server</artifactId>
 
     <dependencies>
+        <!-- Generic -->
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>order-payment-generic-log</artifactId>
+        </dependency>
+
         <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -75,12 +81,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.order.payment.ordering.server.Application</mainClass>
+                    <mainClass>com.order.payment.ordering.server.OrderApplication</mainClass>
                     <jvmArguments>-Xdebug
                         -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5113
                         -Dspring.profiles.active=${profileName}
                         -Duser.timezone=America/Montreal
                     </jvmArguments>
+                    <finalName>server</finalName>
                 </configuration>
             </plugin>
 
