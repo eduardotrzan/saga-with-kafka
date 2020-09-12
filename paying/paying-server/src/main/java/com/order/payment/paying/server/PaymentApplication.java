@@ -1,4 +1,4 @@
-package com.order.payment.ordering.server;
+package com.order.payment.paying.server;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,28 +14,28 @@ import org.springframework.context.annotation.Import;
 
 import com.order.payment.generic.security.SpringSecurityConfig;
 import com.order.payment.generic.tracing.TracingConfig;
-import com.order.payment.ordering.controller.config.OrderingControllerConfig;
-import com.order.payment.ordering.server.config.OrderServerConfig;
+import com.order.payment.paying.controller.config.PayingControllerConfig;
+import com.order.payment.paying.server.config.PayingServerConfig;
 
 @Slf4j
 @RequiredArgsConstructor
 @EnableConfigurationProperties({
-                                       OrderServerConfig.class
+                                       PayingServerConfig.class
                                })
 @Import({
-                OrderingControllerConfig.class,
+                PayingControllerConfig.class,
 
                 SpringSecurityConfig.class,
                 TracingConfig.class,
 
         })
 @SpringBootApplication
-public class OrderApplication implements CommandLineRunner {
+public class PaymentApplication implements CommandLineRunner {
 
-    private final OrderServerConfig config;
+    private final PayingServerConfig config;
 
     public static void main(String[] args) {
-        SpringApplication.run(OrderApplication.class, args);
+        SpringApplication.run(PaymentApplication.class, args);
     }
 
     @PostConstruct

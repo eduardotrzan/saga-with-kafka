@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+  paying-db:
+    image: paying-db
+    container_name: paying-dc-db
+    healthcheck:
+      test: "exit 0"
+    ports:
+      - "5441:5432"
+  paying-server:
+    image: paying-server
+    build: .
+    container_name: paying-dc-server
+    depends_on:
+      - paying-db
+    ports:
+      - "127.0.0.1:8486:8486"
+    volumes:
+      - ~/Dev/Docker/logs/paying:/opt/paying/server/logs
+    environment:
+      # Spring running profile
+      - springProfile=docker
+
+      # Application running port
+      - serverPort=8486
+
+      # DB configuration
+      - databaseUrl=jdbc:postgresql://paying-db:5432/paying
+      - databaseUsername=paying
+      - databasePassword=paying
+
+      # JPA sql logging
+      - jpaShowSql=true
+
+      # Tracing
+      - mcp.zipkin=http://tracer:9411/api/v2/spans
+

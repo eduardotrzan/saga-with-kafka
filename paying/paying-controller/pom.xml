@@ -11,5 +11,39 @@
 
     <artifactId>paying-controller</artifactId>
 
+    <dependencies>
+        <!-- Generic -->
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>order-payment-generic-controller</artifactId>
+        </dependency>
 
+        <!-- Paying -->
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>paying-dto</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>paying-service</artifactId>
+        </dependency>
+
+        <!-- Swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -11,5 +11,123 @@
 
     <artifactId>paying-server</artifactId>
 
+    <dependencies>
+        <!-- Generic -->
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>order-payment-generic-log</artifactId>
+        </dependency>
 
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+        </dependency>
+
+        <!-- Traceability and Monitoring -->
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>order-payment-generic-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>order-payment-generic-tracking</artifactId>
+        </dependency>
+
+
+        <!-- Required for DB changelog -->
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>paying-domain</artifactId>
+        </dependency>
+
+        <!-- Controller -->
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>paying-controller</artifactId>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profileName>local</profileName>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>docker</id>
+            <properties>
+                <profileName>docker</profileName>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>test</id>
+            <properties>
+                <profileName>test</profileName>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profileName>prod</profileName>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.order.payment.paying.server.PaymentApplication</mainClass>
+                    <jvmArguments>-Xdebug
+                        -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5113
+                        -Dspring.profiles.active=${profileName}
+                        -Duser.timezone=America/Montreal
+                    </jvmArguments>
+                    <finalName>server</finalName>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

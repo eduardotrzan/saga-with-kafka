@@ -1,12 +1,12 @@
 version: '3.1'
 
 services:
-  ordering-db:
-    container_name: ordering-db-standalone
+  paying-db:
+    container_name: paying-db-standalone
     restart: always
-    image: ordering-db
+    image: paying-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5442:5432"
+      - "5443:5432"

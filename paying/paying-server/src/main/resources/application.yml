@@ -1,0 +1,54 @@
+config:
+  serviceName: orderpayment-paying
+  timeZone: America/Montreal
+
+mcp:
+  zipkin:
+    serviceName: orderpayment-paying
+    url: ${mcp.zipkin}
+
+spring:
+  batch:
+    job:
+      enabled: false
+  jackson:
+    locale: en_CA
+    date-format: yyyy-MM-dd HH:mm:ss
+    deserialization:
+      ADJUST_DATES_TO_CONTEXT_TIME_ZONE: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    show-sql: ${jpaShowSql}
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: America/Montreal
+  datasource:
+    url: ${databaseUrl}
+    username: ${databaseUsername}
+    password: ${databasePassword}
+    tomcat:
+      initial-size: 5
+      max-active: 50
+      max-idle: 10
+  liquibase:
+    change-log: classpath:server/liquibase/db.changelog-master.xml
+
+server:
+  port: ${serverPort}
+  servlet:
+    context-path: /paying
+  tomcat:
+    basedir: ./logs
+    accesslog:
+      enabled: true
+
+logging:
+  config: classpath:logback.xml
+  level:
+    mcp:
+      cloudtrace: INFO
+    root: INFO
+    # Hides HHH000424: Disabling contextual LOB creation as createClob() method threw error
+    org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl: WARN

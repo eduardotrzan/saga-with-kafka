@@ -9,6 +9,6 @@ import com.order.payment.ordering.domain.config.OrderingDomainConfig;
 @Configuration
 @ComponentScan(basePackages = "com.order.payment.ordering.service")
 @Import({ OrderingDomainConfig.class })
-public class OrderServiceConfig {
+public class OrderingServiceConfig {
 
 }
