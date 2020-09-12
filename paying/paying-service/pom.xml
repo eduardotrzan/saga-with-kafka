@@ -11,5 +11,33 @@
 
     <artifactId>paying-service</artifactId>
 
+    <dependencies>
+        <!-- Generic -->
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>order-payment-generic-exception</artifactId>
+        </dependency>
 
+        <!-- Ordering -->
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>paying-domain</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>paying-dto</artifactId>
+        </dependency>
+
+        <!-- Libs -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+        </dependency>
+    </dependencies>
 </project>

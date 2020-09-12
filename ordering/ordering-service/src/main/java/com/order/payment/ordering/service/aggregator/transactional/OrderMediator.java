@@ -1,4 +1,4 @@
-package com.order.payment.ordering.service.aggregagor.transactional;
+package com.order.payment.ordering.service.aggregator.transactional;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +13,7 @@ import com.order.payment.ordering.dto.request.OrderCreateDto;
 import com.order.payment.ordering.dto.response.OrderDto;
 import com.order.payment.ordering.service.business.OrderService;
 import com.order.payment.ordering.service.mapper.OrderMapper;
-import com.order.payment.ordering.service.validation.ErrorCode;
+import com.order.payment.ordering.service.validation.OrderErrorCode;
 
 @RequiredArgsConstructor
 @Component
@@ -28,7 +28,7 @@ public class OrderMediator {
         Order toBeSaved = this.orderMapper.toNewEntity(request);
         Order saved = this.orderService.create(toBeSaved);
         return this.orderMapper.toDto(saved)
-                .orElseThrow(() -> ErrorCode.MAPPER_ERROR.buildError(
+                .orElseThrow(() -> OrderErrorCode.MAPPER_ERROR.buildError(
                         Order.class.getSimpleName(),
                         OrderDto.class.getSimpleName()
                 ));

@@ -1,4 +1,4 @@
-package com.order.payment.ordering.service.validation;
+package com.order.payment.paying.service.validation;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -7,10 +7,10 @@ import com.order.payment.generic.exceptions.IAppError;
 
 @Getter
 @RequiredArgsConstructor
-public enum ErrorCode implements IAppError {
+public enum PaymentErrorCode implements IAppError {
 
-    ORDER_CANNOT_CREATE("Ordering cannot be created.{}"),
-    ORDER_NOT_FOUND("Ordering not found."),
+    PAYMENT_CANNOT_CREATE("Payment cannot be created.{}"),
+    PAYMENT_NOT_FOUND("Payment not found."),
     MAPPER_ERROR("Could not map {} to valid type of {}.");
 
     private final String description;

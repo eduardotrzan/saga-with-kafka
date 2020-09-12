@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.order.payment.ordering.dto.request.OrderCreateDto;
 import com.order.payment.ordering.dto.response.OrderDto;
-import com.order.payment.ordering.service.aggregagor.transactional.OrderMediator;
-import com.order.payment.ordering.service.validation.ErrorCode;
+import com.order.payment.ordering.service.aggregator.transactional.OrderMediator;
+import com.order.payment.ordering.service.validation.OrderErrorCode;
 
 @Api(value = "Orders Management")
 @RestController
@@ -52,6 +52,6 @@ public class OrderController {
     @GetMapping(value = "/{orderUuid}", produces = MediaType.APPLICATION_JSON_VALUE)
     public OrderDto findOrderByUuid(@PathVariable(value = "orderUuid") UUID orderUuid) {
         return this.orderMediator.findByUuid(orderUuid)
-                .orElseThrow(ErrorCode.ORDER_NOT_FOUND::buildError);
+                .orElseThrow(OrderErrorCode.ORDER_NOT_FOUND::buildError);
     }
 }
