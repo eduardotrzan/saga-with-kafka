@@ -12,6 +12,7 @@
         <module>order-payment-generic</module>
         <module>order-payment-checkstyle</module>
         <module>ordering</module>
+        <module>paying</module>
     </modules>
 
     <parent>

@@ -9,14 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ordering</artifactId>
+    <artifactId>paying</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>ordering-domain</module>
-        <module>ordering-service</module>
-        <module>ordering-dto</module>
-        <module>ordering-controller</module>
-        <module>ordering-server</module>
+        <module>paying-domain</module>
+        <module>paying-dto</module>
+        <module>paying-controller</module>
+        <module>paying-service</module>
+        <module>paying-server</module>
     </modules>
 
     <properties>
@@ -96,10 +96,10 @@
         <order-payment-generic-tracking.version>1.0.0-SNAPSHOT</order-payment-generic-tracking.version>
 
         <!-- Ordering -->
-        <ordering-domain.version>1.0.0-SNAPSHOT</ordering-domain.version>
-        <ordering-dto.version>1.0.0-SNAPSHOT</ordering-dto.version>
-        <ordering-service.version>1.0.0-SNAPSHOT</ordering-service.version>
-        <ordering-controller.version>1.0.0-SNAPSHOT</ordering-controller.version>
+        <paying-domain.version>1.0.0-SNAPSHOT</paying-domain.version>
+        <paying-dto.version>1.0.0-SNAPSHOT</paying-dto.version>
+        <paying-service.version>1.0.0-SNAPSHOT</paying-service.version>
+        <paying-controller.version>1.0.0-SNAPSHOT</paying-controller.version>
     </properties>
 
     <dependencies>
@@ -159,26 +159,26 @@
             <!-- Current System -->
             <dependency>
                 <groupId>com.paysmart</groupId>
-                <artifactId>ordering-domain</artifactId>
-                <version>${ordering-domain.version}</version>
+                <artifactId>paying-domain</artifactId>
+                <version>${paying-domain.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.paysmart</groupId>
-                <artifactId>ordering-dto</artifactId>
-                <version>${ordering-dto.version}</version>
+                <artifactId>paying-dto</artifactId>
+                <version>${paying-dto.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.paysmart</groupId>
-                <artifactId>ordering-service</artifactId>
-                <version>${ordering-service.version}</version>
+                <artifactId>paying-service</artifactId>
+                <version>${paying-service.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.paysmart</groupId>
-                <artifactId>ordering-controller</artifactId>
-                <version>${ordering-controller.version}</version>
+                <artifactId>paying-controller</artifactId>
+                <version>${paying-controller.version}</version>
             </dependency>
 
             <!-- Spring Boot -->
