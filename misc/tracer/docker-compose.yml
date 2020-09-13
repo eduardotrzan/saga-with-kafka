@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  tracer:
+    image: openzipkin/zipkin
+    container_name: tracer-dc
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9411"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "9411:9411"

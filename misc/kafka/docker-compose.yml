@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  kafka-dc:
+    image: kafka-1
+    build: .
+    container_name: kafka-dc-server
+    ports:
+      - "127.0.0.1:2181:2181"
+      - "127.0.0.1:9092:9092"
+    volumes:
+      - ~/Dev/Docker/logs/kafka:/opt/kafka/server/logs
