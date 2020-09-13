@@ -144,6 +144,7 @@ in order to fully run the environment. Make sure you are in the root this *PROJE
 Before proceeding: 
 - make sure you have built each image as explained above in `2.2 Application` section
 - create local docker image for kafka by running `docker image build -t kafka-dc .` in `~/<root_folder>/misc/kafka`
+- create local docker image for tracer by running `docker image build -t tracer-dc .` in `~/<root_folder>/misc/kafka`
 
 
 You can concatenate docker composers that were configured specifically for each requirement and the environment will share the instances among
@@ -168,6 +169,25 @@ The above will:
 
 
 ## 4. Tips
+### Lazy Full Docker version
+Navigate to root folder's misc first (i.e. **< path >/saga-with-kafka/misc**).
+
+Run on terminal:
+```bash
+chmod 777 fullstart.sh && yes Y | ./fullstart.sh
+``` 
+
+The command above will:
+- Stop containers and delete previous images
+- Build kafka's docker
+- Build tracer's docker
+- mvn clean install whole project
+- Build ordering's database
+- Build ordering's docker
+- Build paying's database
+- Build paying's docker
+- Run all system with dependencies with docker 
+
 ### Cache Issues
 Case images get cached and run the following command:
 ```bash

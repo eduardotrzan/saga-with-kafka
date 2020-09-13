@@ -94,6 +94,7 @@
         <order-payment-generic-controller.version>1.0.0-SNAPSHOT</order-payment-generic-controller.version>
         <order-payment-generic-security.version>1.0.0-SNAPSHOT</order-payment-generic-security.version>
         <order-payment-generic-tracking.version>1.0.0-SNAPSHOT</order-payment-generic-tracking.version>
+        <order-payment-generic-kafka.version>1.0.0-SNAPSHOT</order-payment-generic-kafka.version>
 
         <!-- Ordering -->
         <ordering-domain.version>1.0.0-SNAPSHOT</ordering-domain.version>
@@ -154,6 +155,12 @@
                 <groupId>com.paysmart</groupId>
                 <artifactId>order-payment-generic-tracking</artifactId>
                 <version>${order-payment-generic-tracking.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.paysmart</groupId>
+                <artifactId>order-payment-generic-kafka</artifactId>
+                <version>${order-payment-generic-kafka.version}</version>
             </dependency>
 
             <!-- Current System -->

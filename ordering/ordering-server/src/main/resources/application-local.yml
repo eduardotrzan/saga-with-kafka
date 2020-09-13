@@ -5,6 +5,10 @@ mcp:
   zipkin:
     url: http://127.0.0.1:9411/api/v2/spans
 
+kafka:
+  bootstrapAddress: localhost:9092
+  clientId: topics
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5442/ordering

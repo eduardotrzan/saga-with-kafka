@@ -2,9 +2,9 @@ version: '3.7'
 
 services:
   kafka-dc:
-    image: kafka-1
+    image: kafka-dc
     build: .
-    container_name: kafka-dc-server
+    container_name: kafka-dc
     ports:
       - "127.0.0.1:2181:2181"
       - "127.0.0.1:9092:9092"

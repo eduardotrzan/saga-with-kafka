@@ -7,6 +7,10 @@ mcp:
     serviceName: orderpayment-paying
     url: ${mcp.zipkin}
 
+kafka:
+  bootstrapAddress: ${bootstrapAddress}
+  clientId: ${clientId}
+
 spring:
   batch:
     job:
