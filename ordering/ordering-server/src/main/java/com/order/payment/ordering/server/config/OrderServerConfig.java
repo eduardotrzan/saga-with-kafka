@@ -1,25 +1,24 @@
 package com.order.payment.ordering.server.config;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Import;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import com.order.payment.generic.kafka.config.KafkaPropConfig;
+import com.order.payment.generic.security.SpringSecurityConfig;
+import com.order.payment.generic.tracing.TracingConfig;
+import com.order.payment.ordering.controller.config.OrderingControllerConfig;
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString(onlyExplicitlyIncluded = true)
-@ConfigurationProperties(prefix = "config")
+@Import({
+                OrderingControllerConfig.class,
+
+                SpringSecurityConfig.class,
+                TracingConfig.class,
+
+        })
+@EnableConfigurationProperties({
+                                       OrderServerPropConfig.class,
+                                       KafkaPropConfig.class
+                               })
 public class OrderServerConfig {
-
-    @ToString.Include
-    private String serviceName;
-
-    @ToString.Include
-    private String timeZone;
 
 }

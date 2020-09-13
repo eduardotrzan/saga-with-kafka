@@ -9,32 +9,18 @@ import java.util.TimeZone;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Import;
 
-import com.order.payment.generic.kafka.config.KafkaPropConfig;
-import com.order.payment.generic.security.SpringSecurityConfig;
-import com.order.payment.generic.tracing.TracingConfig;
-import com.order.payment.ordering.controller.config.OrderingControllerConfig;
 import com.order.payment.ordering.server.config.OrderServerConfig;
+import com.order.payment.ordering.server.config.OrderServerPropConfig;
 
 @Slf4j
 @RequiredArgsConstructor
-@EnableConfigurationProperties({
-                                       OrderServerConfig.class,
-                                       KafkaPropConfig.class
-                               })
-@Import({
-                OrderingControllerConfig.class,
-
-                SpringSecurityConfig.class,
-                TracingConfig.class,
-
-        })
+@Import({ OrderServerConfig.class })
 @SpringBootApplication
 public class OrderApplication implements CommandLineRunner {
 
-    private final OrderServerConfig config;
+    private final OrderServerPropConfig config;
 
     public static void main(String[] args) {
         SpringApplication.run(OrderApplication.class, args);

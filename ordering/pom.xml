@@ -180,6 +180,12 @@
                 <groupId>com.paysmart</groupId>
                 <artifactId>ordering-service</artifactId>
                 <version>${ordering-service.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.paysmart</groupId>
+                        <artifactId>order-payment-generic-kafka</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>

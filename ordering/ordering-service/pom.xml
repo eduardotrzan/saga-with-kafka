@@ -18,6 +18,11 @@
             <artifactId>order-payment-generic-exception</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>order-payment-generic-kafka</artifactId>
+        </dependency>
+
         <!-- Ordering -->
         <dependency>
             <groupId>com.paysmart</groupId>
