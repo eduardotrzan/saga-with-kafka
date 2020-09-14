@@ -93,6 +93,7 @@
 
         <!-- System -->
         <order-payment-generic-log.version>1.0.0-SNAPSHOT</order-payment-generic-log.version>
+        <order-payment-generic-utils.version>1.0.0-SNAPSHOT</order-payment-generic-utils.version>
     </properties>
 
     <dependencies>

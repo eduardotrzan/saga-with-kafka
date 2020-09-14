@@ -12,6 +12,12 @@
     <artifactId>order-payment-generic-kafka</artifactId>
 
     <dependencies>
+        <!-- Generic -->
+        <dependency>
+            <groupId>com.paysmart</groupId>
+            <artifactId>order-payment-generic-utils</artifactId>
+        </dependency>
+
         <!-- Spring Framework -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

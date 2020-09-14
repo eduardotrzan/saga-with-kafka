@@ -17,8 +17,11 @@ import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.order.payment.generic.kafka.annotation.GenericKafkaListener;
 import com.order.payment.generic.kafka.config.KafkaPropConfig;
+import com.order.payment.generic.utils.mapper.GenericObjectMapper;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -44,9 +47,10 @@ class KafkaConsumerManager {
 
     private <T> ConcurrentMessageListenerContainer<String, T> createConsumer(Class<T> eventClass, GenericKafkaListener annotation) {
         Map<String, Object> consumerProps = consumerProperties(eventClass, annotation, this.kafkaPropConfig);
+        JsonDeserializer<T> jsonDeserializer = customizedJsonDeserializer(eventClass);
         var consumerFactory = new DefaultKafkaConsumerFactory<>(consumerProps,
                                                                 new StringDeserializer(),
-                                                                new JsonDeserializer<>(eventClass));
+                                                                jsonDeserializer);
 
         ContainerProperties containerProps = new ContainerProperties(annotation.topic());
         containerProps.setAckMode(ContainerProperties.AckMode.RECORD);
@@ -58,12 +62,20 @@ class KafkaConsumerManager {
         return container;
     }
 
+    private <T> JsonDeserializer<T> customizedJsonDeserializer(Class<T> eventClass) {
+        ObjectMapper objectMapper = new GenericObjectMapper();
+        objectMapper.configure(MapperFeature.DEFAULT_VIEW_INCLUSION, false);
+        var jsonDeserializer = new JsonDeserializer<>(eventClass, false);
+        jsonDeserializer.addTrustedPackages("*");
+        return jsonDeserializer;
+    }
+
     private Map<String, Object> consumerProperties(Class<?> eventClass, GenericKafkaListener annotation, KafkaPropConfig kafkaPropConfig) {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaPropConfig.getBootstrapAddress());
         props.put(ConsumerConfig.GROUP_ID_CONFIG, annotation.consumerGroupId());
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, new JsonDeserializer<>(eventClass));
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, customizedJsonDeserializer(eventClass));
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, String.valueOf(annotation.enableAutoCommit()));
         props.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, annotation.maxExecutionTime());
         props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, annotation.maxPoolRecords());

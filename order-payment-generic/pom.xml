@@ -20,6 +20,7 @@
         <module>order-payment-generic-security</module>
         <module>order-payment-generic-kafka</module>
         <module>order-payment-generic-exception</module>
+        <module>order-payment-generic-utils</module>
     </modules>
 
     <dependencyManagement>
@@ -28,6 +29,12 @@
                 <groupId>com.paysmart</groupId>
                 <artifactId>order-payment-generic-log</artifactId>
                 <version>${order-payment-generic-log.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.paysmart</groupId>
+                <artifactId>order-payment-generic-utils</artifactId>
+                <version>${order-payment-generic-utils.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -7,9 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan("com.order.payment.generic.kafka")
 @EnableAutoConfiguration(exclude = KafkaAutoConfiguration.class)
-@EnableConfigurationProperties({
-                                       KafkaPropConfig.class
-                               })
+@EnableConfigurationProperties({ KafkaPropConfig.class })
 public class KafkaServerConfig {
 
 }
