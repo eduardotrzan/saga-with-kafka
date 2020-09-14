@@ -37,6 +37,6 @@ services:
       - mcp.zipkin=http://tracer-dc:9411/api/v2/spans
 
       # Kafka
-      - bootstrapAddress=http://kafka-dc:9411/api/v2/spans
+      - bootstrapAddress=http://kafka-dc:9092
       - clientId=topics
 

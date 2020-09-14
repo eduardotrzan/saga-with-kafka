@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  tracer:
+  tracer-dc:
     image: openzipkin/zipkin
     container_name: tracer-dc
     healthcheck:
