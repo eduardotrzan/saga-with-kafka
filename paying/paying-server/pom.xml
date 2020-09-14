@@ -23,11 +23,6 @@
             <artifactId>order-payment-generic-server-filter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.paysmart</groupId>
-            <artifactId>order-payment-generic-kafka</artifactId>
-        </dependency>
-
         <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

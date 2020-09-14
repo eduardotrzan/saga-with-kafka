@@ -16,9 +16,9 @@ public @interface GenericKafkaEvent {
 
     short replicationFactor() default 1;
 
-    String producerName();
+    String producerName() default "";
 
-    String templateName();
+    String templateName() default "";
 
     int retryBackoffMs() default 1000;
 
