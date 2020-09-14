@@ -1,25 +1,26 @@
 package com.order.payment.paying.server.config;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Import;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import com.order.payment.generic.kafka.config.KafkaPropConfig;
+import com.order.payment.generic.security.SpringSecurityConfig;
+import com.order.payment.generic.server.filter.config.ServerFilterConfig;
+import com.order.payment.generic.tracing.TracingConfig;
+import com.order.payment.paying.controller.config.PayingControllerConfig;
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString(onlyExplicitlyIncluded = true)
-@ConfigurationProperties(prefix = "config")
+@Import({
+                PayingControllerConfig.class,
+
+                ServerFilterConfig.class,
+                SpringSecurityConfig.class,
+                TracingConfig.class,
+
+        })
+@EnableConfigurationProperties({
+                                       PayingServerPropConfig.class,
+                                       KafkaPropConfig.class
+                               })
 public class PayingServerConfig {
-
-    @ToString.Include
-    private String serviceName;
-
-    @ToString.Include
-    private String timeZone;
 
 }

@@ -89,6 +89,7 @@
 
         <!-- System -->
         <order-payment-generic-log.version>1.0.0-SNAPSHOT</order-payment-generic-log.version>
+        <order-payment-generic-server-filter.version>1.0.0-SNAPSHOT</order-payment-generic-server-filter.version>
         <order-payment-generic-domain.version>1.0.0-SNAPSHOT</order-payment-generic-domain.version>
         <order-payment-generic-exception.version>1.0.0-SNAPSHOT</order-payment-generic-exception.version>
         <order-payment-generic-controller.version>1.0.0-SNAPSHOT</order-payment-generic-controller.version>
@@ -125,6 +126,12 @@
                 <groupId>com.paysmart</groupId>
                 <artifactId>order-payment-generic-log</artifactId>
                 <version>${order-payment-generic-log.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.paysmart</groupId>
+                <artifactId>order-payment-generic-server-filter</artifactId>
+                <version>${order-payment-generic-server-filter.version}</version>
             </dependency>
 
             <dependency>
