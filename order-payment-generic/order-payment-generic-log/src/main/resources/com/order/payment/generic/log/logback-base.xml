@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%magenta(%d{yyyy-MM-dd HH:mm:ss.SSS Z, America/Montreal}) [%thread] %highlight([%level]) %cyan(%logger{36}) %yellow(reqSessionId=%X{reqSessionId:--} userSessionId=%X{userSessionId:--} tracerId=%X{X-B3-TraceId:--} spanId=%X{X-B3-SpanId:--} parentSpanId=%X{X-B3-ParentSpanId:--}) - %msg%n"/>
+
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <Pattern>%magenta(%d{yyyy-MM-dd HH:mm:ss.SSS Z, America/Montreal}) [%thread] %highlight([%level]) %cyan(%logger{36}) %yellow(reqSessionId=%X{reqSessionId:--} userSessionId=%X{userSessionId:--}) - %msg%n</Pattern>
+            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
         </encoder>
     </appender>
 
@@ -18,6 +21,10 @@
             <provider class="net.logstash.logback.composite.loggingevent.LoggingEventPatternJsonProvider">
                 <pattern>
                     {
+                    "traceId": "%X{X-B3-TraceId:--}",
+                    "spanId": "%X{X-B3-SpanId:--}",
+                    "parentSpanId": "%X{X-B3-ParentSpanId:--}",
+                    "clientId": "%X{client-id:--}",
                     "reqSessionId": "%X{reqSessionId:--}",
                     "userSessionId": "%X{userSessionId:--}"
                     }
@@ -26,12 +33,11 @@
             <timeZone>America/Montreal</timeZone>
             <includeContext>false</includeContext>
             <includeCallerData>false</includeCallerData>
-            <!--
-            Excluding these MDC fields as they are going to be added by LoggingEventPatternJsonProvider above
-            with shorter names (no straight way to rename MDC fields otherwise).
-             -->
+
+            <excludeMdcKeyName>tracerId</excludeMdcKeyName>
             <excludeMdcKeyName>reqSessionId</excludeMdcKeyName>
             <excludeMdcKeyName>userSessionId</excludeMdcKeyName>
+
             <fieldNames class="net.logstash.logback.fieldnames.ShortenedFieldNames">
                 <message>msg</message>
                 <logger>log</logger>
@@ -82,6 +88,10 @@
             <provider class="net.logstash.logback.composite.loggingevent.LoggingEventPatternJsonProvider">
                 <pattern>
                     {
+                    "traceId": "%X{X-B3-TraceId:-}",
+                    "spanId": "%X{X-B3-SpanId:-}",
+                    "parentSpanId": "%X{X-B3-ParentSpanId:-}",
+                    "clientId": "%X{client-id:--}",
                     "reqSessionId": "%X{reqSessionId:--}",
                     "userSessionId": "%X{userSessionId:--}"
                     }
@@ -90,12 +100,11 @@
             <timeZone>America/Montreal</timeZone>
             <includeContext>false</includeContext>
             <includeCallerData>false</includeCallerData>
-            <!--
-            Excluding these MDC fields as they are going to be added by LoggingEventPatternJsonProvider above
-            with shorter names (no straight way to rename MDC fields otherwise).
-             -->
+
+            <excludeMdcKeyName>tracerId</excludeMdcKeyName>
             <excludeMdcKeyName>reqSessionId</excludeMdcKeyName>
             <excludeMdcKeyName>userSessionId</excludeMdcKeyName>
+
             <fieldNames class="net.logstash.logback.fieldnames.ShortenedFieldNames">
                 <message>msg</message>
                 <logger>log</logger>
@@ -138,12 +147,12 @@
         <file>logs/server.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <FileNamePattern>logs/server.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
-            <maxFileSize>100MB</maxFileSize>
-            <maxHistory>10</maxHistory>
-            <totalSizeCap>2GB</totalSizeCap>
+            <maxFileSize>200MB</maxFileSize>
+            <maxHistory>20</maxHistory>
+            <totalSizeCap>4GB</totalSizeCap>
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>%magenta(%d{yyyy-MM-dd HH:mm:ss.SSS Z, America/Montreal}) [%thread] %highlight([%level]) %cyan(%logger{36}) %yellow(reqSessionId=%X{reqSessionId:--} userSessionId=%X{userSessionId:--}) - %msg%n</Pattern>
+            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
         </layout>
     </appender>
 </included>

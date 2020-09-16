@@ -1,10 +1,6 @@
 server:
   port: 8485
 
-mcp:
-  zipkin:
-    url: http://127.0.0.1:9411/api/v2/spans
-
 kafka:
   bootstrapAddress: localhost:9092
   clientId: topics
@@ -16,3 +12,5 @@ spring:
     password: ordering
   jpa:
     show-sql: true
+  zipkin:
+    base-url: http://127.0.0.1:9411

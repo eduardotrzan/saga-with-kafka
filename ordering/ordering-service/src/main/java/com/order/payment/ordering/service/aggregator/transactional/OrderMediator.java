@@ -1,6 +1,7 @@
 package com.order.payment.ordering.service.aggregator.transactional;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -17,6 +18,7 @@ import com.order.payment.ordering.service.event.OrderCreatedEvent;
 import com.order.payment.ordering.service.mapper.OrderMapper;
 import com.order.payment.ordering.service.validation.OrderErrorCode;
 
+@Slf4j
 @RequiredArgsConstructor
 @Component
 public class OrderMediator {
@@ -28,6 +30,7 @@ public class OrderMediator {
 
     @Transactional
     public OrderDto create(OrderCreateDto request) {
+        log.info("create request={}", request);
         Order toBeSaved = this.orderMapper.toNewEntity(request);
         Order saved = this.orderService.create(toBeSaved);
         OrderDto dto = this.orderMapper.toDto(saved)

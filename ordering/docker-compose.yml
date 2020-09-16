@@ -34,7 +34,7 @@ services:
       - jpaShowSql=true
 
       # Tracing
-      - mcp.zipkin=http://tracer-dc:9411/api/v2/spans
+      - mcp.zipkin=http://tracer-dc:9411
 
       # Kafka
       - bootstrapAddress=http://kafka-dc:9092

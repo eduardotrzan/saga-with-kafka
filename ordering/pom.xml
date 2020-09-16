@@ -114,20 +114,15 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
+            <groupId>com.paysmart</groupId>
+            <artifactId>order-payment-generic-log</artifactId>
+            <version>${order-payment-generic-log.version}</version>
         </dependency>
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
             <!-- Generic System -->
-            <dependency>
-                <groupId>com.paysmart</groupId>
-                <artifactId>order-payment-generic-log</artifactId>
-                <version>${order-payment-generic-log.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>com.paysmart</groupId>
                 <artifactId>order-payment-generic-server-filter</artifactId>
@@ -615,75 +610,6 @@
                 <groupId>com.puppycrawl.tools</groupId>
                 <artifactId>checkstyle</artifactId>
                 <version>${puppycrawl-checkstyle.version}</version>
-            </dependency>
-
-            <!-- Traceability and Monitoring -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-zipkin</artifactId>
-                <version>${spring-cloud.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.zipkin.zipkin2</groupId>
-                        <artifactId>zipkin</artifactId>
-                    </exclusion>
-
-                    <exclusion>
-                        <groupId>io.zipkin.reporter2</groupId>
-                        <artifactId>zipkin-reporter</artifactId>
-                    </exclusion>
-
-                    <exclusion>
-                        <groupId>io.zipkin.reporter2</groupId>
-                        <artifactId>zipkin-reporter-brave</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>io.zipkin.brave</groupId>
-                <artifactId>brave</artifactId>
-                <version>${zipkin-brave.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.zipkin.brave</groupId>
-                <artifactId>brave-instrumentation-http</artifactId>
-                <version>${zipkin-brave.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.zipkin.brave</groupId>
-                <artifactId>brave-context-slf4j</artifactId>
-                <version>${zipkin-brave.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.zipkin.reporter2</groupId>
-                <artifactId>zipkin-sender-okhttp3</artifactId>
-                <version>${zipkin-sender-okhttp3.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-sleuth</artifactId>
-                <version>${spring-cloud.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.zipkin.zipkin2</groupId>
-                        <artifactId>zipkin</artifactId>
-                    </exclusion>
-
-                    <exclusion>
-                        <groupId>io.zipkin.reporter2</groupId>
-                        <artifactId>zipkin-reporter</artifactId>
-                    </exclusion>
-
-                    <exclusion>
-                        <groupId>io.zipkin.reporter2</groupId>
-                        <artifactId>zipkin-reporter-brave</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <!-- Kafka -->

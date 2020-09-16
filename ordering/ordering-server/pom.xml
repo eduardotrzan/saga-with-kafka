@@ -15,11 +15,6 @@
         <!-- Generic -->
         <dependency>
             <groupId>com.paysmart</groupId>
-            <artifactId>order-payment-generic-log</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.paysmart</groupId>
             <artifactId>order-payment-generic-server-filter</artifactId>
         </dependency>
 

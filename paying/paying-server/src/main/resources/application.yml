@@ -2,11 +2,6 @@ config:
   serviceName: orderpayment-paying
   timeZone: America/Montreal
 
-mcp:
-  zipkin:
-    serviceName: orderpayment-paying
-    url: ${mcp.zipkin}
-
 kafka:
   bootstrapAddress: ${bootstrapAddress}
   clientId: ${clientId}
@@ -38,6 +33,8 @@ spring:
       max-idle: 10
   liquibase:
     change-log: classpath:server/liquibase/db.changelog-master.xml
+  zipkin:
+    base-url: ${mcp.zipkin}
 
 server:
   port: ${serverPort}

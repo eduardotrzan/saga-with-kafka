@@ -23,6 +23,33 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <version>${spring-cloud.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.zipkin.zipkin2</groupId>
+                    <artifactId>zipkin</artifactId>
+                </exclusion>
+
+                <exclusion>
+                    <groupId>io.zipkin.reporter2</groupId>
+                    <artifactId>zipkin-reporter</artifactId>
+                </exclusion>
+
+                <exclusion>
+                    <groupId>io.zipkin.reporter2</groupId>
+                    <artifactId>zipkin-reporter-brave</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <!-- Libs -->
         <dependency>
             <groupId>org.aspectj</groupId>
