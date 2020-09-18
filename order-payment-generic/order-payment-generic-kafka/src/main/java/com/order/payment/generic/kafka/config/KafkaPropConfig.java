@@ -14,11 +14,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(of = {"bootstrapAddress", "clientId"})
+@ToString(of = {"serverHost", "zookeeperHost", "clientId"})
 @ConfigurationProperties(prefix = "kafka")
 public class KafkaPropConfig {
 
-    private String bootstrapAddress;
+    private String serverHost;
+
+    private String zookeeperHost;
 
     private String clientId;
 

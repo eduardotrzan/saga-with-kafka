@@ -43,7 +43,7 @@ class KafkaProducerManager {
 
     private Map<String, Object> eventProducerProperties(GenericKafkaEvent annotation) {
         Map<String, Object> props = new HashMap<>();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaPropConfig.getBootstrapAddress());
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaPropConfig.getServerHost());
         props.put(ProducerConfig.LINGER_MS_CONFIG, annotation.lingerMs());
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);

@@ -37,6 +37,7 @@ services:
       - mcp.zipkin=http://tracer-dc:9411
 
       # Kafka
-      - bootstrapAddress=http://kafka-dc:9092
+      - serverHost=http://kafka-dc:9092
+      - zookeeperHost=http://kafka-dc:2181
       - clientId=topics
 

@@ -3,7 +3,8 @@ config:
   timeZone: America/Montreal
 
 kafka:
-  bootstrapAddress: ${bootstrapAddress}
+  serverHost: ${serverHost}
+  zookeeperHost: ${zookeeperHost}
   clientId: ${clientId}
 
 spring:
@@ -33,6 +34,9 @@ spring:
       max-idle: 10
   liquibase:
     change-log: classpath:server/liquibase/db.changelog-master.xml
+  sleuth:
+    sampler:
+      probability: 1.0
   zipkin:
     base-url: ${mcp.zipkin}
 

@@ -37,6 +37,8 @@ public class KafkaTemplateManager {
 
     public <T> KafkaTemplate<String, T> getKafkaTemplate(Class<T> clazz) {
         GenericKafkaEvent annotation = clazz.getAnnotation(GenericKafkaEvent.class);
-        return (KafkaTemplate<String, T>) beanFactory.getBean(annotation.templateName());
+        var template = (KafkaTemplate<String, T>) beanFactory.getBean(annotation.templateName());
+        template.setApplicationContext(this.context);
+        return template;
     }
 }

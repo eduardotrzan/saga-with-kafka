@@ -2,7 +2,7 @@ server:
   port: 8486
 
 kafka:
-  bootstrapAddress: localhost:9092
+  serverHost: localhost:9092
   clientId: topics
 
 spring:

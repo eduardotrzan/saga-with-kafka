@@ -72,7 +72,7 @@ class KafkaConsumerManager {
 
     private Map<String, Object> consumerProperties(Class<?> eventClass, GenericKafkaListener annotation, KafkaPropConfig kafkaPropConfig) {
         Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaPropConfig.getBootstrapAddress());
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaPropConfig.getServerHost());
         props.put(ConsumerConfig.GROUP_ID_CONFIG, annotation.consumerGroupId());
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, customizedJsonDeserializer(eventClass));
