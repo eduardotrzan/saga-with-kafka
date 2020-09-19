@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.order.payment.paying.domain.entity.Payment;
 import com.order.payment.paying.domain.entity.enums.PaymentStatus;
 import com.order.payment.paying.domain.repo.PaymentRepository;
+import com.order.payment.paying.service.validation.PaymentErrorCode;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -22,14 +23,27 @@ public class PaymentService {
     private final PaymentRepository repo;
 
     @Transactional(propagation = Propagation.MANDATORY)
-    public Payment create(Payment order) {
-        order.setStatus(PaymentStatus.PENDING);
-        return this.repo.save(order);
+    public Payment create(Payment payment) {
+        payment.setStatus(PaymentStatus.PENDING);
+        return this.repo.save(payment);
     }
 
     @Transactional(readOnly = true, propagation = Propagation.MANDATORY)
     public Optional<Payment> findByUuid(UUID uuid) {
         return this.repo.findByUuid(uuid);
+    }
+
+    @Transactional(propagation = Propagation.MANDATORY)
+    public Payment update(Payment payment) {
+        Payment originalPayment = this.repo.findByUuid(payment.getUuid())
+                .orElseThrow(PaymentErrorCode.PAYMENT_NOT_FOUND::buildError);
+
+        if (PaymentStatus.PENDING != originalPayment.getStatus()) {
+            throw PaymentErrorCode.PAYMENT_INVALID_STATUS.buildError(originalPayment.getStatus());
+        }
+
+        originalPayment.setStatus(payment.getStatus());
+        return this.repo.save(originalPayment);
     }
 
 }

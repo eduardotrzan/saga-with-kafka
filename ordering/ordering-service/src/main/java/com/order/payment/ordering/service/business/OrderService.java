@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.order.payment.ordering.domain.entity.Order;
 import com.order.payment.ordering.domain.entity.enums.OrderStatus;
 import com.order.payment.ordering.domain.repo.OrderRepository;
+import com.order.payment.ordering.service.validation.OrderErrorCode;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -32,4 +33,16 @@ public class OrderService {
         return this.repo.findByUuid(uuid);
     }
 
+    @Transactional(propagation = Propagation.MANDATORY)
+    public Order update(Order order) {
+        Order originalOrder = this.repo.findByUuid(order.getUuid())
+                .orElseThrow(OrderErrorCode.ORDER_NOT_FOUND::buildError);
+
+        if (OrderStatus.PENDING != originalOrder.getStatus()) {
+            throw OrderErrorCode.ORDER_INVALID_STATUS.buildError(originalOrder.getStatus());
+        }
+
+        originalOrder.setStatus(order.getStatus());
+        return this.repo.save(originalOrder);
+    }
 }

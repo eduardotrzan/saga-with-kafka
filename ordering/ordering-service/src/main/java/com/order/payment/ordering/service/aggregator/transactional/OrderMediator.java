@@ -14,7 +14,7 @@ import com.order.payment.ordering.domain.entity.Order;
 import com.order.payment.ordering.dto.request.OrderCreateDto;
 import com.order.payment.ordering.dto.response.OrderDto;
 import com.order.payment.ordering.service.business.OrderService;
-import com.order.payment.ordering.service.event.OrderCreatedEvent;
+import com.order.payment.ordering.service.event.outgoing.OrderCreatedEvent;
 import com.order.payment.ordering.service.mapper.OrderMapper;
 import com.order.payment.ordering.service.validation.OrderErrorCode;
 

@@ -27,6 +27,7 @@ public class PaymentMapper {
         return Payment.builder()
                 .description(request.getDescription())
                 .amount(request.getAmount())
+                .orderUuid(request.getOrderUuid())
                 .build();
     }
 

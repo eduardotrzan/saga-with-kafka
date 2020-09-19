@@ -17,15 +17,16 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.util.UUID;
 
 import com.order.payment.generic.domain.entity.AbstractEntity;
 import com.order.payment.ordering.domain.entity.enums.OrderStatus;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
 @Entity
 @Table(name = "ordering")
 @ToString(callSuper = true, of = { "id" })
@@ -37,7 +38,7 @@ public class Order extends AbstractEntity<Long> {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "status", nullable = false, length = 70, updatable = false)
+    @Column(name = "status", nullable = false, length = 70)
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
@@ -46,5 +47,23 @@ public class Order extends AbstractEntity<Long> {
 
     @Column(name = "cost", nullable = false, precision = 24, scale = 12)
     private BigDecimal cost;
+
+    @Builder
+    public Order(
+            UUID uuid,
+            OffsetDateTime createDate,
+            OffsetDateTime updateDate,
+            Long version,
+            Long id,
+            OrderStatus status,
+            String description,
+            BigDecimal cost
+    ) {
+        super(uuid, createDate, updateDate, version);
+        this.id = id;
+        this.status = status;
+        this.description = description;
+        this.cost = cost;
+    }
 
 }

@@ -10,6 +10,7 @@ import lombok.ToString;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -25,4 +26,7 @@ public class PaymentCreateDto {
 
     @NotNull
     private BigDecimal amount;
+
+    @NotNull
+    private UUID orderUuid;
 }

@@ -1,4 +1,4 @@
-package com.order.payment.paying.service.event;
+package com.order.payment.paying.service.event.incoming;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +21,12 @@ public class PayOrderCreatedEventListener {
                           consumerName = PayOrderCreatedEvent.CONSUMER_NAME)
     public void handle(PayOrderCreatedEvent event) {
         log.info("Processing event={}.", event);
+        String description = String.format("Payment of order with uuid=%s with amount=%s.",
+                                           event.getUuid(), event.getAmount());
         PaymentCreateDto create = PaymentCreateDto.builder()
-                .description(String.format("Payment of order with uuid=%s", event.getUuid()))
+                .description(description)
                 .amount(event.getAmount())
+                .orderUuid(event.getUuid())
                 .build();
         this.paymentMediator.payOrder(create);
     }

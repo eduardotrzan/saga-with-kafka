@@ -1,4 +1,4 @@
-package com.order.payment.paying.service.event;
+package com.order.payment.paying.service.event.incoming;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

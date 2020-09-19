@@ -17,15 +17,16 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.util.UUID;
 
-import com.order.payment.paying.domain.entity.enums.PaymentStatus;
 import com.order.payment.generic.domain.entity.AbstractEntity;
+import com.order.payment.paying.domain.entity.enums.PaymentStatus;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
 @Entity
 @Table(name = "paying")
 @ToString(callSuper = true, of = { "id" })
@@ -37,7 +38,7 @@ public class Payment extends AbstractEntity<Long> {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "status", nullable = false, length = 70, updatable = false)
+    @Column(name = "status", nullable = false, length = 70)
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
 
@@ -46,4 +47,27 @@ public class Payment extends AbstractEntity<Long> {
 
     @Column(name = "amount", nullable = false, precision = 24, scale = 12)
     private BigDecimal amount;
+
+    @Column(name = "order_uuid", nullable = false)
+    private UUID orderUuid;
+
+    @Builder
+    public Payment(
+            UUID uuid,
+            OffsetDateTime createDate,
+            OffsetDateTime updateDate,
+            Long version,
+            Long id,
+            PaymentStatus status,
+            String description,
+            BigDecimal amount,
+            UUID orderUuid
+    ) {
+        super(uuid, createDate, updateDate, version);
+        this.id = id;
+        this.status = status;
+        this.description = description;
+        this.amount = amount;
+        this.orderUuid = orderUuid;
+    }
 }

@@ -18,6 +18,7 @@ CREATE TABLE "paying" (
     "update_date"                TIMESTAMP WITH TIME ZONE                                    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "version"                    BIGINT                                                      NOT NULL,
     "status"                     VARCHAR(70)                                                 NOT NULL DEFAULT 'PENDING', -- 'FAILED', 'DONE'
+    "order_uuid"                 UUID                                                        NOT NULL,
     "description"                VARCHAR(200)                                                NOT NULL,
     "amount"                     DECIMAL(24, 12)                                             NOT NULL,
 
@@ -25,5 +26,9 @@ CREATE TABLE "paying" (
 );
 END;
 
-CREATE UNIQUE INDEX "paying_idx01"
-    ON "paying" ("uuid");
+CREATE UNIQUE INDEX paying_idx01
+    ON paying (uuid);
+
+CREATE UNIQUE INDEX paying_idx02
+    ON paying (order_uuid, status)
+WHERE status != 'DONE';
