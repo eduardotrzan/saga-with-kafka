@@ -1,0 +1,123 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0.0-SNAPSHOT",
+    "title" : "Paying Service"
+  },
+  "tags" : [ {
+    "name" : "Payments Management"
+  }, {
+    "name" : "Processing Status Management"
+  } ],
+  "paths" : {
+    "/v1/payments/{paymentUuid}" : {
+      "get" : {
+        "tags" : [ "Payments Management" ],
+        "summary" : "Retrieves a payment by its UUID.",
+        "description" : "",
+        "operationId" : "findOrderByUuid",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "paymentUuid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string",
+          "format" : "uuid"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieves a payment.",
+            "schema" : {
+              "$ref" : "#/definitions/PaymentDto"
+            }
+          },
+          "401" : {
+            "description" : "You are not authorized to view the payment."
+          },
+          "404" : {
+            "description" : "The payment you were trying to reach is NOT FOUND."
+          }
+        }
+      }
+    },
+    "/v1/processingStatus" : {
+      "get" : {
+        "tags" : [ "Processing Status Management" ],
+        "summary" : "Retrieves a Processing Status by its UUID.",
+        "description" : "",
+        "operationId" : "getStatus",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieves a Processing Status.",
+            "schema" : {
+              "$ref" : "#/definitions/ProcessingStateDto"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Processing Status Management" ],
+        "summary" : "Changes a Processing Status by its UUID.",
+        "description" : "",
+        "operationId" : "findOrderByUuid",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ProcessingStateDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully changes a Processing Status.",
+            "schema" : {
+              "$ref" : "#/definitions/PaymentDto"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "PaymentDto" : {
+      "type" : "object",
+      "properties" : {
+        "uuid" : {
+          "type" : "string",
+          "format" : "uuid"
+        },
+        "createDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "updateDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "status" : {
+          "type" : "string",
+          "enum" : [ "PENDING", "FAILED", "DONE" ]
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "number"
+        }
+      }
+    },
+    "ProcessingStateDto" : {
+      "type" : "object",
+      "required" : [ "status" ],
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "enum" : [ "FAIL", "DELAY_SUCCESS", "DELAY_FAIL", "SUCCESS" ]
+        }
+      }
+    }
+  }
+}
