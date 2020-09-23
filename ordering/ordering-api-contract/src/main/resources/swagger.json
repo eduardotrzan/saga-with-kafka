@@ -1,0 +1,112 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0.0-SNAPSHOT",
+    "title" : "Order Service"
+  },
+  "tags" : [ {
+    "name" : "Orders Management"
+  } ],
+  "paths" : {
+    "/v1/orders" : {
+      "post" : {
+        "tags" : [ "Orders Management" ],
+        "summary" : "Creates a new order.",
+        "description" : "",
+        "operationId" : "create",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/OrderCreateDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/OrderDto"
+            }
+          },
+          "201" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/v1/orders/{orderUuid}" : {
+      "get" : {
+        "tags" : [ "Orders Management" ],
+        "summary" : "Retrieves an order by its UUID.",
+        "description" : "",
+        "operationId" : "findOrderByUuid",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orderUuid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string",
+          "format" : "uuid"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieves an order.",
+            "schema" : {
+              "$ref" : "#/definitions/OrderDto"
+            }
+          },
+          "401" : {
+            "description" : "You are not authorized to view the order."
+          },
+          "404" : {
+            "description" : "The order you were trying to reach is NOT FOUND."
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "OrderCreateDto" : {
+      "type" : "object",
+      "required" : [ "cost", "description" ],
+      "properties" : {
+        "description" : {
+          "type" : "string"
+        },
+        "cost" : {
+          "type" : "number"
+        }
+      }
+    },
+    "OrderDto" : {
+      "type" : "object",
+      "properties" : {
+        "uuid" : {
+          "type" : "string",
+          "format" : "uuid"
+        },
+        "createDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "updateDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "status" : {
+          "type" : "string",
+          "enum" : [ "PENDING", "CANCELLED", "PAID" ]
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "cost" : {
+          "type" : "number"
+        }
+      }
+    }
+  }
+}

@@ -3,18 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>paying</artifactId>
+        <artifactId>ordering</artifactId>
         <groupId>com.paysmart</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>paying-api-contract</artifactId>
+    <artifactId>ordering-api-contract</artifactId>
     <packaging>jar</packaging>
 
     <properties>
-        <swagger.codegen.api.package>com.order.payment.paying.api</swagger.codegen.api.package>
-        <swagger.codegen.model.package>com.order.payment.paying.dto</swagger.codegen.model.package>
+        <swagger.codegen.api.package>com.order.payment.ordering.api</swagger.codegen.api.package>
+        <swagger.codegen.model.package>com.order.payment.ordering.dto</swagger.codegen.model.package>
     </properties>
 
     <dependencies>
@@ -27,12 +27,6 @@
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-core</artifactId>
-        </dependency>
-
-        <!-- Feign Config -->
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-core</artifactId>
         </dependency>
 
         <!-- Payload Annotation -->
@@ -61,12 +55,14 @@
                         <configuration>
                             <inputSpec>${basedir}/src/main/resources/swagger.json</inputSpec>
                             <language>java</language>
-                            <library>feign</library>
+                            <library>resttemplate</library>
 
                             <apiPackage>${swagger.codegen.api.package}</apiPackage>
                             <modelPackage>${swagger.codegen.model.package}</modelPackage>
 
                             <generateApiTests>false</generateApiTests>
+                            <generateModelTests>false</generateModelTests>
+
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <addCompileSourceRoot>false</addCompileSourceRoot>
                             <output>${project.build.directory}/generated-sources</output>
@@ -84,4 +80,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
