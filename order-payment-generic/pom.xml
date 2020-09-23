@@ -23,6 +23,23 @@
         <module>order-payment-generic-utils</module>
     </modules>
 
+    <properties>
+        <!-- Logs -->
+        <logstash.version>6.4</logstash.version>
+        <slf4-log4j.version>2.13.3</slf4-log4j.version>
+        <slf4-jul.version>2.0.0-alpha1</slf4-jul.version>
+
+        <!-- Traceability and Monitoring -->
+        <spring-cloud.version>2.2.5.RELEASE</spring-cloud.version>
+
+        <!-- Kafka -->
+        <spring-kafka.version>2.5.5.RELEASE</spring-kafka.version>
+
+        <!-- System -->
+        <order-payment-generic-log.version>1.0.0-SNAPSHOT</order-payment-generic-log.version>
+        <order-payment-generic-utils.version>1.0.0-SNAPSHOT</order-payment-generic-utils.version>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -35,6 +52,51 @@
                 <groupId>com.paysmart</groupId>
                 <artifactId>order-payment-generic-utils</artifactId>
                 <version>${order-payment-generic-utils.version}</version>
+            </dependency>
+
+            <!-- Logs -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-to-slf4j</artifactId>
+                <version>${slf4-log4j.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jul-to-slf4j</artifactId>
+                <version>${slf4-jul.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash.version}</version>
+            </dependency>
+
+            <!-- Traceability and Monitoring -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-zipkin</artifactId>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-sleuth</artifactId>
+                <version>${spring-cloud.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -11,6 +11,10 @@
 
     <artifactId>order-payment-checkstyle</artifactId>
 
+    <properties>
+        <puppycrawl-checkstyle.version>8.32</puppycrawl-checkstyle.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.puppycrawl.tools</groupId>

@@ -16,63 +16,63 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.zipkin.zipkin2</groupId>
-                    <artifactId>zipkin</artifactId>
-                </exclusion>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>io.zipkin.zipkin2</groupId>-->
+<!--                    <artifactId>zipkin</artifactId>-->
+<!--                </exclusion>-->
 
-                <exclusion>
-                    <groupId>io.zipkin.reporter2</groupId>
-                    <artifactId>zipkin-reporter</artifactId>
-                </exclusion>
+<!--                <exclusion>-->
+<!--                    <groupId>io.zipkin.reporter2</groupId>-->
+<!--                    <artifactId>zipkin-reporter</artifactId>-->
+<!--                </exclusion>-->
 
-                <exclusion>
-                    <groupId>io.zipkin.reporter2</groupId>
-                    <artifactId>zipkin-reporter-brave</artifactId>
-                </exclusion>
-            </exclusions>
+<!--                <exclusion>-->
+<!--                    <groupId>io.zipkin.reporter2</groupId>-->
+<!--                    <artifactId>zipkin-reporter-brave</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
 
-        <dependency>
-            <groupId>io.zipkin.brave</groupId>
-            <artifactId>brave</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.zipkin.brave</groupId>-->
+<!--            <artifactId>brave</artifactId>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>io.zipkin.brave</groupId>
-            <artifactId>brave-instrumentation-http</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.zipkin.brave</groupId>-->
+<!--            <artifactId>brave-instrumentation-http</artifactId>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>io.zipkin.brave</groupId>
-            <artifactId>brave-context-slf4j</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.zipkin.brave</groupId>-->
+<!--            <artifactId>brave-context-slf4j</artifactId>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>io.zipkin.reporter2</groupId>
-            <artifactId>zipkin-sender-okhttp3</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.zipkin.reporter2</groupId>-->
+<!--            <artifactId>zipkin-sender-okhttp3</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.zipkin.zipkin2</groupId>
-                    <artifactId>zipkin</artifactId>
-                </exclusion>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>io.zipkin.zipkin2</groupId>-->
+<!--                    <artifactId>zipkin</artifactId>-->
+<!--                </exclusion>-->
 
-                <exclusion>
-                    <groupId>io.zipkin.reporter2</groupId>
-                    <artifactId>zipkin-reporter</artifactId>
-                </exclusion>
+<!--                <exclusion>-->
+<!--                    <groupId>io.zipkin.reporter2</groupId>-->
+<!--                    <artifactId>zipkin-reporter</artifactId>-->
+<!--                </exclusion>-->
 
-                <exclusion>
-                    <groupId>io.zipkin.reporter2</groupId>
-                    <artifactId>zipkin-reporter-brave</artifactId>
-                </exclusion>
-            </exclusions>
+<!--                <exclusion>-->
+<!--                    <groupId>io.zipkin.reporter2</groupId>-->
+<!--                    <artifactId>zipkin-reporter-brave</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
     </dependencies>
 </project>

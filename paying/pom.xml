@@ -25,14 +25,6 @@
 
         <java.version>1.14</java.version>
 
-        <!-- Maven Config -->
-        <maven.surefire.version>3.0.0-M5</maven.surefire.version>
-        <maven-enforcer.version>3.0.0-M3</maven-enforcer.version>
-        <maven-compiler.version>3.8.1</maven-compiler.version>
-        <maven.compiler.release>14</maven.compiler.release>
-        <maven.compiler.source>1.14</maven.compiler.source>
-        <maven.compiler.target>1.14</maven.compiler.target>
-
         <jaxb-api.version>2.4.0-b180830.0359</jaxb-api.version>
         <jaxb-impl.version>3.0.0-M4</jaxb-impl.version>
         <javax-validation.version>2.0.1.Final</javax-validation.version>
@@ -91,9 +83,6 @@
         <sonar.language>java</sonar.language>
         <skip-unit-test>false</skip-unit-test>
         <skip-integration-test>false</skip-integration-test>
-
-        <!-- Kafka -->
-        <spring-kafka.version>2.5.5.RELEASE</spring-kafka.version>
 
         <!-- System -->
         <order-payment-generic-log.version>1.0.0-SNAPSHOT</order-payment-generic-log.version>
@@ -232,39 +221,8 @@
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-batch</artifactId>
-                <version>${spring-boot.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-json</artifactId>
                 <version>${spring-boot.version}</version>
-            </dependency>
-
-            <!-- Spring Security -->
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-core</artifactId>
-                <version>${spring-security.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-config</artifactId>
-                <version>${spring-security.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-web</artifactId>
-                <version>${spring-security.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-crypto</artifactId>
-                <version>${spring-security.version}</version>
             </dependency>
 
             <!-- Spring Framework -->
@@ -401,7 +359,6 @@
                 <version>${aspectj.version}</version>
             </dependency>
 
-
             <!-- Jackson -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
@@ -464,7 +421,6 @@
                 <version>${junit-jupiter.version}</version>
                 <scope>test</scope>
             </dependency>
-
 
             <dependency>
                 <groupId>org.mockito</groupId>
@@ -597,52 +553,6 @@
                 <groupId>io.github.openfeign</groupId>
                 <artifactId>feign-core</artifactId>
                 <version>${feign-core.version}</version>
-            </dependency>
-
-            <!-- Logs -->
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-to-slf4j</artifactId>
-                <version>${slf4-log4j.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>jul-to-slf4j</artifactId>
-                <version>${slf4-jul.version}</version>
-                <scope>compile</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-core</artifactId>
-                <version>${logback.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>net.logstash.logback</groupId>
-                <artifactId>logstash-logback-encoder</artifactId>
-                <version>${logstash.version}</version>
-            </dependency>
-
-            <!-- Checkstyle & Find Bugs -->
-            <dependency>
-                <groupId>com.puppycrawl.tools</groupId>
-                <artifactId>checkstyle</artifactId>
-                <version>${puppycrawl-checkstyle.version}</version>
-            </dependency>
-
-            <!-- Kafka -->
-            <dependency>
-                <groupId>org.springframework.kafka</groupId>
-                <artifactId>spring-kafka</artifactId>
-                <version>${spring-kafka.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
