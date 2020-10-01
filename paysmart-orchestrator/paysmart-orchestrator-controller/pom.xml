@@ -3,46 +3,47 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>paying</artifactId>
+        <artifactId>paysmart-orchestrator</artifactId>
         <groupId>com.paysmart</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>paying-service</artifactId>
+    <artifactId>paysmart-orchestrator-controller</artifactId>
 
     <dependencies>
         <!-- Generic -->
         <dependency>
             <groupId>com.paysmart</groupId>
-            <artifactId>order-payment-generic-exception</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.paysmart</groupId>
-            <artifactId>order-payment-generic-kafka</artifactId>
+            <artifactId>order-payment-generic-controller</artifactId>
         </dependency>
 
         <!-- Paying -->
         <dependency>
             <groupId>com.paysmart</groupId>
-            <artifactId>paying-domain</artifactId>
+            <artifactId>paysmart-orchestrator-dto</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.paysmart</groupId>
-            <artifactId>paying-dto</artifactId>
+            <artifactId>paysmart-orchestrator-service</artifactId>
         </dependency>
 
-        <!-- Libs -->
+        <!-- Swagger -->
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 </project>

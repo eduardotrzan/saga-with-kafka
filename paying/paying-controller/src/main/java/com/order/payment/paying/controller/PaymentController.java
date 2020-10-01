@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.MediaType;
@@ -20,7 +21,7 @@ import com.order.payment.paying.service.validation.PaymentErrorCode;
 
 @Api(value = "Payments Management")
 @RestController
-@RequestMapping({ "/v1/payments" })
+@RequestMapping({ "/v1" })
 @RequiredArgsConstructor
 public class PaymentController {
 
@@ -32,9 +33,20 @@ public class PaymentController {
             @ApiResponse(code = 401, message = "You are not authorized to view the payment."),
             @ApiResponse(code = 404, message = "The payment you were trying to reach is NOT FOUND.")
     })
-    @GetMapping(value = "/{paymentUuid}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public PaymentDto findOrderByUuid(@PathVariable(value = "paymentUuid") UUID paymentUuid) {
+    @GetMapping(value = "/payments/{paymentUuid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public PaymentDto findByUuid(@PathVariable(value = "paymentUuid") UUID paymentUuid) {
         return this.paymentMediator.findByUuid(paymentUuid)
                 .orElseThrow(PaymentErrorCode.PAYMENT_NOT_FOUND::buildError);
+    }
+
+    @ApiOperation(value = "Retrieves list of payments by order UUID.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieves payments."),
+            @ApiResponse(code = 401, message = "You are not authorized to view payments."),
+            @ApiResponse(code = 404, message = "Payments you were trying to reach is NOT FOUND for order uuid.")
+    })
+    @GetMapping(value = "/order/{orderUuid}/payments", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PaymentDto> findByOrderUuid(@PathVariable(value = "orderUuid") UUID orderUuid) {
+        return this.paymentMediator.findByOrderUuid(orderUuid);
     }
 }

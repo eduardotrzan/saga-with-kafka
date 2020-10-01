@@ -3,6 +3,7 @@ package com.order.payment.paying.service.aggregator.transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,6 +39,12 @@ public class PaymentMediator {
         return this.paymentService
                 .findByUuid(paymentUuid)
                 .flatMap(paymentMapper::toDto);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PaymentDto> findByOrderUuid(UUID orderUuid) {
+        List<Payment> payments = this.paymentService.findByOrderUuid(orderUuid);
+        return this.paymentMapper.toDtos(payments);
     }
 
     @Transactional

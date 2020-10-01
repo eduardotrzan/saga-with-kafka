@@ -10,12 +10,45 @@
     "name" : "Processing Status Management"
   } ],
   "paths" : {
+    "/v1/order/{orderUuid}/payments" : {
+      "get" : {
+        "tags" : [ "Payments Management" ],
+        "summary" : "Retrieves list of payments by order UUID.",
+        "description" : "",
+        "operationId" : "findByOrderUuid",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "orderUuid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string",
+          "format" : "uuid"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieves payments.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/PaymentDto"
+              }
+            }
+          },
+          "401" : {
+            "description" : "You are not authorized to view payments."
+          },
+          "404" : {
+            "description" : "Payments you were trying to reach is NOT FOUND for order uuid."
+          }
+        }
+      }
+    },
     "/v1/payments/{paymentUuid}" : {
       "get" : {
         "tags" : [ "Payments Management" ],
         "summary" : "Retrieves a payment by its UUID.",
         "description" : "",
-        "operationId" : "findOrderByUuid",
+        "operationId" : "findByUuid",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "paymentUuid",

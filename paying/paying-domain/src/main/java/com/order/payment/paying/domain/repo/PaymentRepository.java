@@ -1,5 +1,6 @@
 package com.order.payment.paying.domain.repo;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -12,4 +13,5 @@ import com.order.payment.paying.domain.entity.Payment;
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
     Optional<Payment> findByUuid(UUID uuid);
+    List<Payment> findByOrderUuid(UUID orderUuid);
 }

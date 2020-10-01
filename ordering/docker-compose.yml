@@ -15,7 +15,7 @@ services:
     depends_on:
       - ordering-db
     ports:
-      - "127.0.0.1:8485:8485"
+      - "127.0.0.1:8485:8484"
     volumes:
       - ~/Dev/Docker/logs/ordering:/opt/ordering/server/logs
     environment:
@@ -23,7 +23,7 @@ services:
       - springProfile=docker
 
       # Application running port
-      - serverPort=8485
+      - serverPort=8484
 
       # DB configuration
       - databaseUrl=jdbc:postgresql://ordering-db:5432/ordering

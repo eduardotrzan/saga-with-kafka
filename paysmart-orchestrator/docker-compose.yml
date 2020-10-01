@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  paysmart-orchestrator-server:
+    image: paysmart-orchestrator-server
+    build: .
+    container_name: paysmart-orchestrator-dc-server
+    ports:
+      - "127.0.0.1:8487:8484"
+    volumes:
+      - ~/Dev/Docker/logs/paysmart-orchestrator:/opt/paysmart-orchestrator/server/logs
+    environment:
+      # Spring running profile
+      - springProfile=docker
+
+      # Application running port
+      - serverPort=8484
+
+      # Tracing
+      - mcp.zipkin=http://tracer-dc:9411

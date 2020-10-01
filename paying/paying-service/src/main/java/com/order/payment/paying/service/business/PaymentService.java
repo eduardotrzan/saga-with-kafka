@@ -3,6 +3,7 @@ package com.order.payment.paying.service.business;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,6 +32,11 @@ public class PaymentService {
     @Transactional(readOnly = true, propagation = Propagation.MANDATORY)
     public Optional<Payment> findByUuid(UUID uuid) {
         return this.repo.findByUuid(uuid);
+    }
+
+    @Transactional(readOnly = true, propagation = Propagation.MANDATORY)
+    public List<Payment> findByOrderUuid(UUID orderUuid) {
+        return this.repo.findByOrderUuid(orderUuid);
     }
 
     @Transactional(propagation = Propagation.MANDATORY)

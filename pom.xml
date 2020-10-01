@@ -13,6 +13,7 @@
         <module>order-payment-checkstyle</module>
         <module>ordering</module>
         <module>paying</module>
+        <module>paysmart-orchestrator</module>
     </modules>
 
     <parent>

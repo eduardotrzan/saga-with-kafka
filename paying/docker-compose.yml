@@ -15,7 +15,7 @@ services:
     depends_on:
       - paying-db
     ports:
-      - "127.0.0.1:8486:8486"
+      - "127.0.0.1:8486:8484"
     volumes:
       - ~/Dev/Docker/logs/paying:/opt/paying/server/logs
     environment:
@@ -23,7 +23,7 @@ services:
       - springProfile=docker
 
       # Application running port
-      - serverPort=8486
+      - serverPort=8484
 
       # DB configuration
       - databaseUrl=jdbc:postgresql://paying-db:5432/paying
